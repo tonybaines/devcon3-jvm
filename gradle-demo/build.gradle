@@ -1,0 +1,12 @@
+apply plugin: 'groovy'
+
+repositories {
+  mavenCentral()
+  mavenRepo urls: "https://collaborate.bt.com/artefacts/content/groups/public"
+}
+
+dependencies {
+    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.4'
+    groovy group: 'commons-cli', name: 'commons-cli', version: '1.2'
+    testCompile 'org.spockframework:spock-core:0.4-groovy-1.7'
+}
