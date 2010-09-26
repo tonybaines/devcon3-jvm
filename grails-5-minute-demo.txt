@@ -1,0 +1,62 @@
+grails create-app devcon-demo
+
+----- Domain Classes -----
+grails create-domain-class demo.Facility
+grails create-domain-class demo.Booking
+
+vi grails-app/domain/demo/Facility.groovy
+class Facility {
+    String name
+
+    static hasMany=[bookings: Booking]
+    static constraints = {
+      name(nullable: false)
+    }
+    String toString() {name}
+}
+
+vi grails-app/domain/demo/Booking.groovy
+class Booking {
+    Date dayBooked
+    Integer starts
+    Integer ends
+    String bookersName
+
+    static belongsTo=[facility: Facility]
+
+    static constraints = {
+      dayBooked(nullable: false)
+      starts(min:0, max:23, nullable: false)
+      ends(min:0, max:23, nullable: false)
+      bookersName(nullable: false)
+    }
+    String toString() {"${dayBooked.dateString} from $starts to $ends [$bookersName]"}
+}
+
+---- Controllers ---
+grails create-controller demo.Facility
+grails create-controller demo.Booking
+
+vi grails-app/controllers/demo/BookingController.groovy
+class BookingController {
+    def scaffold = Booking
+}
+
+vi grails-app/controllers/demo/FacilityController.groovy
+class FacilityController {
+    def scaffold = Facility
+}
+
+grails -Dserver.port=40500 run-app
+
+
+grails stats
+
+----- Replace the scaffolding -----
+
+grails generate-all demo.Facility
+grails generate-all demo.Booking
+
+grails stats
+
+vi grails-app/controllers/demo/BookingController.groovy
