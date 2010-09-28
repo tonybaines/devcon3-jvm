@@ -1,0 +1,5 @@
+gradle war
+jar tvf build/libs/gradle-web-demo.war
+
+gradle jettyRun
+http://localhost:8163/gradle-web-demo/
