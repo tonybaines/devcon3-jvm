@@ -1,8 +1,10 @@
 apply plugin: 'war'
 apply plugin: 'jetty'
+apply plugin: 'eclipse'
 
 repositories {
     mavenCentral()
+	mavenRepo urls: "https://collaborate.bt.com/artefacts/content/groups/public"
 }
 
 dependencies {
