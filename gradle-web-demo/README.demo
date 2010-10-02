@@ -1,3 +1,7 @@
+This is the standard Gradle WAR example tweaked to
+* Use the BT Nexus repo
+* Add the eclipse plugin
+
 gradle war
 jar tvf build/libs/gradle-web-demo.war
 
